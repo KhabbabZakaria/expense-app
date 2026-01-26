@@ -1,0 +1,4 @@
+export const EXPENSE_TYPES = [
+  'rent',
+  'misc extra',
+] as const

@@ -1,0 +1,98 @@
+.expenses-columns {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.expenses-column {
+  flex: 1;
+}
+
+.divider {
+  width: 2px;
+  background-color: #ccc;
+  margin: 0 10px;
+}
+
+.dashboard-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2%;
+  background-color: #2b2f37;
+}
+
+.card {
+  background: rgb(20, 17, 49);
+  padding: 32px;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+  margin-bottom: 24px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.field label {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.field input,
+.field select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.primary-btn {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.primary-btn2 {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px;
+  background-color: #133681;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.primary-btn2:hover {
+  background-color: #051746;
+}
