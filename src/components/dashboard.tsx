@@ -191,28 +191,30 @@ function Dashboard() {
 
   // ---- Combine loaded entries with new entries for warnings ----
   const allEntries = useMemo(() => {
-    // Create a map to aggregate amounts by type and subtype
+    // Create a map to aggregate amounts by type (ignore subtype for misc extra)
     const aggregated = new Map<string, ExpenseEntry>()
 
     // Add loaded entries
     loadedEntries.forEach(entry => {
-      const key = `${entry.type}||${entry.subtype || ''}`
+      // For misc extra, aggregate all together regardless of subtype
+      const key = entry.type === 'misc extra' ? 'misc extra' : `${entry.type}||${entry.subtype || ''}`
       const existing = aggregated.get(key)
       if (existing) {
         existing.amount += entry.amount
       } else {
-        aggregated.set(key, { ...entry })
+        aggregated.set(key, { ...entry, subtype: entry.type === 'misc extra' ? undefined : entry.subtype })
       }
     })
 
     // Add new entries (these will be added to existing loaded ones)
     entries.forEach(entry => {
-      const key = `${entry.type}||${entry.subtype || ''}`
+      // For misc extra, aggregate all together regardless of subtype
+      const key = entry.type === 'misc extra' ? 'misc extra' : `${entry.type}||${entry.subtype || ''}`
       const existing = aggregated.get(key)
       if (existing) {
         existing.amount += entry.amount
       } else {
-        aggregated.set(key, { ...entry })
+        aggregated.set(key, { ...entry, subtype: entry.type === 'misc extra' ? undefined : entry.subtype })
       }
     })
 
@@ -269,13 +271,13 @@ function Dashboard() {
                           <>
                             <span className="warning-amount">€{w.actual.toFixed(2)}</span> is 
                             <span className="warning-diff"> €{w.diff.toFixed(2)} ({w.percentDiff}%) OVER</span> 
-                            the default €{w.default.toFixed(2)}
+                            the default <strong>€{w.default.toFixed(2)}</strong>
                           </>
                         ) : (
                           <>
                             <span className="warning-amount">€{w.actual.toFixed(2)}</span> is 
                             <span className="warning-diff"> €{Math.abs(w.diff).toFixed(2)} ({Math.abs(Number(w.percentDiff))}%) UNDER</span> 
-                            the default €{w.default.toFixed(2)}
+                            the default <strong>€{w.default.toFixed(2)}</strong>
                             <span className="can-add"> - You can add more!</span>
                           </>
                         )}
